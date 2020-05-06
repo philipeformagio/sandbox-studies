@@ -11,6 +11,10 @@ namespace BookListMVC.Controllers
     public class BooksController : Controller
     {
         private readonly ApplicationDbContext _db;
+
+        [BindProperty]
+        public Book Book { get; set; }
+
         public BooksController(ApplicationDbContext db)
         {
             this._db = db;
@@ -20,6 +24,45 @@ namespace BookListMVC.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Upsert(int? id)
+        {
+            Book = new Book();
+            if(id == null)
+            {
+                //create
+                return View(Book);
+            }
+            //update
+            Book = await _db.Books.FirstAsync(x => x.Id == id);
+            if(Book == null)
+            {
+                return NotFound();
+            }
+            return View(Book);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert()
+        {
+            if(ModelState.IsValid)
+            {
+                if(Book.Id == 0)
+                {
+                    //create
+                    _db.Books.Add(Book);
+                }
+                else
+                {
+                    _db.Books.Update(Book);
+                }
+                await _db.SaveChangesAsync();
+                
+                return RedirectToAction("Index");
+            }
+            return View(Book);
         }
 
 
