@@ -1,0 +1,1 @@
+This folder is used to hold documentations of the app.
