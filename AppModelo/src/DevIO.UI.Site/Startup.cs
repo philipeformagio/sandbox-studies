@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DevIO.UI.Site
@@ -15,6 +16,14 @@ namespace DevIO.UI.Site
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            });
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
         }
 
@@ -35,9 +44,19 @@ namespace DevIO.UI.Site
                     template: "{controller=Home}/{action=Index}/{id?}"
                 );
 
-                routes.MapRoute(
-                    name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                //routes.MapRoute(
+                //    name: "areas",
+                //    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                //);
+                routes.MapAreaRoute(
+                    name: "AreaProdutos",
+                    areaName: "Produtos",
+                    template: "Produtos/{controller=Cadastro}/{action=Index}/{id?}"
+                );
+                routes.MapAreaRoute(
+                    name: "AreaVendas",
+                    areaName: "Vendas",
+                    template: "Vendas/{controller=Pedidos}/{action=Index}/{id?}"
                 );
             });
         }
