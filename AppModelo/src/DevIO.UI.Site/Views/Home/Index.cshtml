@@ -1,8 +1,7 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@inject DevIO.UI.Site.Data.IPedidoRepository PedidoRepository
 
 <h1>Index</h1>
 
 Olá
+
+@PedidoRepository.ObterPedido().Id
