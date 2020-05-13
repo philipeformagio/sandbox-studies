@@ -1,8 +1,10 @@
 ﻿using DevIO.UI.Site.Data;
+using DevIO.UI.Site.Servicos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace DevIO.UI.Site
 {
@@ -23,6 +25,13 @@ namespace DevIO.UI.Site
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IPedidoRepository, PedidoRepository>();
+
+            services.AddTransient<IOperacaoTransient, Operacao>();
+            services.AddScoped<IOperacaoScoped, Operacao>();
+            services.AddSingleton<IOperacaoSingleton, Operacao>();
+            services.AddSingleton<IOperacaoSingletonInstance>(new Operacao(Guid.Empty));
+
+            services.AddTransient<OperacaoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
