@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DevIO.UI.Site.Servicos;
+﻿using DevIO.UI.Site.Servicos;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace DevIO.UI.Site.Controllers
 {

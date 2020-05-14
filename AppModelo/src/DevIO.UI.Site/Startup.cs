@@ -3,6 +3,8 @@ using DevIO.UI.Site.Servicos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -12,6 +14,13 @@ namespace DevIO.UI.Site
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            this.Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<RazorViewEngineOptions>(options =>
@@ -20,6 +29,11 @@ namespace DevIO.UI.Site
                 options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/{1}/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            });
+
+            services.AddDbContext<MeuDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("MeuDbContext"));
             });
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
