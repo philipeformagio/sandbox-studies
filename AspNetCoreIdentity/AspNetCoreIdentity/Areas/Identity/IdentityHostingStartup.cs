@@ -15,12 +15,6 @@ namespace AspNetCoreIdentity.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<AspNetCoreIdentityContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("AspNetCoreIdentityContextConnection")));
-
-                services.AddDefaultIdentity<IdentityUser>()
-                    .AddEntityFrameworkStores<AspNetCoreIdentityContext>();
             });
         }
     }
