@@ -89,7 +89,23 @@
         var data = canvas.toDataURL('image/png');
         photo.setAttribute('src', data);
 
-        console.log(data);
+        var file = document.getElementById("photo").src;
+
+        var url = 'https://localhost:44359/api/values';
+
+        var data = document.getElementById("photo").src.substring(22)
+        
+        // console.log(data);
+
+        data = 'a';
+        
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            processData: false,
+            contentType: false
+        });
 
       } else {
         clearphoto();
