@@ -87,24 +87,22 @@
         context.drawImage(video, 0, 0, width, height);
       
         var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
+        photo.setAttribute('src', data);        
 
-        var file = document.getElementById("photo").src;
+        var url = 'https://localhost:44312/api/values';
 
-        var url = 'https://localhost:44359/api/values';
+        var dataObj = {
+          "texto": document.getElementById("photo").src.substring(22).toString()
+        }
 
-        var data = document.getElementById("photo").src.substring(22)
-        
-        // console.log(data);
-
-        data = 'a';
-        
         $.ajax({
-            url: url,
-            type: "POST",
-            data: data,
-            processData: false,
-            contentType: false
+          "url": "https://localhost:44312/api/values",
+          "method": "POST",
+          "timeout": 0,
+          "headers": {
+            "Content-Type": ["application/json", "application/json"]
+          },
+          data: JSON.stringify(dataObj)
         });
 
       } else {
