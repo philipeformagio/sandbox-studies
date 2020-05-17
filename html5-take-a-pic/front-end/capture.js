@@ -87,16 +87,14 @@
         context.drawImage(video, 0, 0, width, height);
       
         var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);        
-
-        var url = 'https://localhost:44312/api/values';
+        photo.setAttribute('src', data);
 
         var dataObj = {
-          "texto": document.getElementById("photo").src.substring(22).toString()
+          "base64Image": document.getElementById("photo").src.substring(22).toString()
         }
 
         $.ajax({
-          "url": "https://localhost:44312/api/values",
+          "url": "https://localhost:44337/api/photos",
           "method": "POST",
           "timeout": 0,
           "headers": {
