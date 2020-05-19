@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using AspNetCoreIdentity.Models;
+﻿using AspNetCoreIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using static AspNetCoreIdentity.Extensions.CustomAuthorization;
 
 namespace AspNetCoreIdentity.Controllers
 {
@@ -31,6 +28,18 @@ namespace AspNetCoreIdentity.Controllers
 
         [Authorize(Policy = "PodeExcluir")]
         public IActionResult SecretClaim()
+        {
+            return View("Secret");
+        }
+
+        [Authorize(Policy = "PodeEscrever")]
+        public IActionResult SecretClaimGravar()
+        {
+            return View("Secret");
+        }
+
+        [ClaimsAuthorize("Produtos", "Ler")]
+        public IActionResult ClaimsCustom()
         {
             return View("Secret");
         }
