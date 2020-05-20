@@ -1,6 +1,7 @@
 ﻿using AspNetCoreIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 using static AspNetCoreIdentity.Extensions.CustomAuthorization;
 
@@ -9,9 +10,17 @@ namespace AspNetCoreIdentity.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly IConfiguration _configuration;
+        public HomeController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [AllowAnonymous]
         public IActionResult Index()
         {
+            ViewData["value"] = _configuration.GetSection("test_reload").Value;            
+
             return View();
         }
 
