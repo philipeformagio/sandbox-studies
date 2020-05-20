@@ -1,4 +1,7 @@
 ﻿using AspNetCoreIdentity.Config;
+using KissLog;
+using KissLog.Apis.v1.Listeners;
+using KissLog.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +13,6 @@ namespace AspNetCoreIdentity
     public class Startup
     {
         public IConfiguration Configuration { get; }
-
         public Startup(IHostingEnvironment hostingEnvironment)
         {
             var builder = new ConfigurationBuilder()
@@ -26,6 +28,7 @@ namespace AspNetCoreIdentity
 
             Configuration = builder.Build();
         }
+
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -44,15 +47,16 @@ namespace AspNetCoreIdentity
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/erro/500");
+                app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
+            app.UseKissLogMiddleware();            
 
             app.UseMvc(routes =>
             {
@@ -60,6 +64,8 @@ namespace AspNetCoreIdentity
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            LogConfig.RegisterKissLogListeners(Configuration);
         }
     }
 }
