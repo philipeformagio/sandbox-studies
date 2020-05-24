@@ -15,6 +15,12 @@ namespace DevIO.Data.Repository
     {
         protected readonly MeuDbContext _db;
         protected readonly DbSet<TEntity> _dbSet;
+
+        public Repository(MeuDbContext db)
+        {
+            this._db = db;
+            _dbSet = db.Set<TEntity>();
+        }
         
 
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)

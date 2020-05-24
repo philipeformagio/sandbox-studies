@@ -11,7 +11,7 @@ namespace DevIO.Data.Context
     {
         public MeuDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Fornecedor> Produtos { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
 
