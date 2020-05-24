@@ -52,9 +52,6 @@ namespace DevIO.App
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
-
-            services.AddDbContext<VaiSerJogadoForaContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("VaiSerJogadoForaContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

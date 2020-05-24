@@ -21,7 +21,7 @@ namespace DevIO.Data.Repository
             this._db = db;
             _dbSet = db.Set<TEntity>();
         }
-        
+
 
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
         {
@@ -35,7 +35,8 @@ namespace DevIO.Data.Repository
 
         public virtual async Task<List<TEntity>> ObterTodos()
         {
-            return await _dbSet.ToListAsync();
+            var list = await _dbSet.ToListAsync();
+            return list;
         }
 
         public virtual async Task Adicionar(TEntity entity)
