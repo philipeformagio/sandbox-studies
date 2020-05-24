@@ -18,13 +18,12 @@ namespace DevIO.App.Controllers
             _fornecedorRepository = fornecedorRepository;
         }
 
-        // GET: Fornecedores
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.FornecedorViewModel.ToListAsync());
         }
 
-        // GET: Fornecedores/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -42,15 +41,11 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        // GET: Fornecedores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Fornecedores/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Documento,TipoFornecedor,Ativo")] FornecedorViewModel fornecedorViewModel)
@@ -65,7 +60,6 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        // GET: Fornecedores/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -81,9 +75,6 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        // POST: Fornecedores/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Documento,TipoFornecedor,Ativo")] FornecedorViewModel fornecedorViewModel)
@@ -116,7 +107,6 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        // GET: Fornecedores/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -134,7 +124,6 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        // POST: Fornecedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
