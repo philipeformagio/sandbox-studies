@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using DevIO.App.ViewModels;
 using DevIO.Business.Interfaces;
-using AutoMapper;
 using DevIO.Business.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DevIO.App.Controllers
 {
@@ -16,7 +13,8 @@ namespace DevIO.App.Controllers
     {
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
-        public FornecedoresController(IMapper mapper, IFornecedorRepository fornecedorRepository)
+        public FornecedoresController(IMapper mapper, 
+                                      IFornecedorRepository fornecedorRepository)
         {
             _mapper = mapper;
             _fornecedorRepository = fornecedorRepository;
@@ -25,7 +23,8 @@ namespace DevIO.App.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterTodos()));
+            var fornecedoresViewModel = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
+            return View(fornecedoresViewModel);
         }
 
         public async Task<IActionResult> Details(Guid? id)
@@ -77,7 +76,8 @@ namespace DevIO.App.Controllers
 
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
-            await _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(fornecedorViewModel));
+            var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
+            await _fornecedorRepository.Atualizar(fornecedor);
 
             return RedirectToAction(nameof(Index));
         }
