@@ -83,7 +83,6 @@ namespace DevIO.App.Controllers
             await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
 
             return RedirectToAction(nameof(Index));
-            
         }
 
         public async Task<IActionResult> Delete(Guid? id)
