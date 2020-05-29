@@ -89,6 +89,7 @@ namespace DevIO.App.Controllers
             if (id != produtoViewModel.Id) return NotFound();
 
             var produtoAtualizacao = await this.ObterProduto(id);
+
             produtoViewModel.Fornecedor = produtoAtualizacao.Fornecedor;
             produtoViewModel.Imagem = produtoAtualizacao.Imagem;
             if (!ModelState.IsValid) return View(produtoViewModel);
