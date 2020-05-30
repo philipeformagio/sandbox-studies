@@ -10,7 +10,6 @@
 <hr />
 
 <form asp-action="Edit">
-
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <input type="hidden" asp-for="Id" />
@@ -32,7 +31,7 @@
             <label asp-for="TipoFornecedor"></label>
             <div>
                 <input type="radio" value="1" asp-for="TipoFornecedor" checked="@(Model.TipoFornecedor == 1)" /> Pessoa Física<br />
-                <input type="radio" value="1" asp-for="TipoFornecedor" checked="@(Model.TipoFornecedor == 2)" /> Pessoa Jurídica
+                <input type="radio" value="2" asp-for="TipoFornecedor" checked="@(Model.TipoFornecedor == 2)" /> Pessoa Jurídica
             </div>
             <div>
                 &nbsp;
@@ -52,6 +51,12 @@
 
 <div>
     <partial name="_DetalhesEndereco" />
+</div>
+
+<hr />
+<h4>Produtos</h4>
+<div>
+    <partial name="../Produtos/_ListaProdutos" model="@Model.Produtos" />
 </div>
 
 @section Scripts {
