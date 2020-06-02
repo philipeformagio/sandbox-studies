@@ -1,6 +1,4 @@
-﻿console.log('sitejs loaded');
-
-function AjaxModal() {
+﻿function AjaxModal() {
 
     $(document).ready(function () {
         $(function () {
@@ -8,7 +6,7 @@ function AjaxModal() {
 
             $("a[data-modal]").on("click", function (e) {
 
-                console.log('cliquei no icone');
+                console.log(this);
 
                 $('#myModalContent').load(this.href,
                     function () {
@@ -42,6 +40,7 @@ function AjaxModal() {
             });
         }
     });
+
 }
 
 function BuscaCep() {
@@ -62,7 +61,7 @@ function BuscaCep() {
             var cep = $(this).val().replace(/\D/g, '');
 
             //Verifica se campo cep possui valor informado.
-            if (cep != "") {
+            if (cep !== "") {
 
                 //Expressão regular para validar o CEP.
                 var validacep = /^[0-9]{8}$/;
