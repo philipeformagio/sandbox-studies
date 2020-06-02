@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DevIO.App.Controllers
 {
+    [Route("admin-fornecedores")]
     public class FornecedoresController : BaseController
     {
         private readonly IMapper _mapper;
@@ -25,6 +26,7 @@ namespace DevIO.App.Controllers
         }
 
 
+        [Route("lista-de-fornecedores")]
         public async Task<IActionResult> Index()
         {
             var fornecedoresViewModel = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
