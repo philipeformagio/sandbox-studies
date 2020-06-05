@@ -150,6 +150,7 @@ namespace DevIO.App.Controllers
 
             await _produtoService.Remover(id);
             if (!OperacaoValida()) return View(produtoViewModel);
+            TempData["Sucesso"] = "Produto excluído com sucesso!";
 
             return RedirectToAction(nameof(Index));
         }
