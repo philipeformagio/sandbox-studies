@@ -34,7 +34,7 @@ namespace DevIO.App
             services.AddIdentityConfiguration(this.Configuration);
 
             services.AddDbContext<MeuDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection2")));
 
             services.AddAutoMapper(typeof(Startup));
 
