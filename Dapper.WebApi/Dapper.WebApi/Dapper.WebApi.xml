@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dapper.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Dapper.WebApi.Controllers.ProductsController">
+            <summary>
+            ProductsController returns the product Entity
+            </summary>
+        </member>
+        <member name="M:Dapper.WebApi.Controllers.ProductsController.#ctor(Dapper.Application.Interfaces.IUnitOfWork)">
+            <summary>
+            ProductsController initialize unitOfWork
+            </summary>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Dapper.WebApi.Controllers.ProductsController.GetAll">
+            <summary>
+            Gets all products at once.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dapper.WebApi.Controllers.ProductsController.GetById(System.Int32)">
+            <summary>
+            Gets a product by a given Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dapper.WebApi.Controllers.ProductsController.Add(Dapper.Core.Entities.Product)">
+            <summary>
+            Adds a product into the database by a given product model.
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dapper.WebApi.Controllers.ProductsController.Delete(System.Int32)">
+            <summary>
+            Deletes a product by a given id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dapper.WebApi.Controllers.ProductsController.Update(Dapper.Core.Entities.Product)">
+            <summary>
+            Updates a product by a given id.
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
