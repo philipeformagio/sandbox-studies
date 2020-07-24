@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.WebApi", "Dapper.WebApi\Dapper.WebApi.csproj", "{8CB1D19B-0E59-4E53-BE18-0D6F3E42ABF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.WebApi", "Dapper.WebApi\Dapper.WebApi.csproj", "{8CB1D19B-0E59-4E53-BE18-0D6F3E42ABF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Core", "Dapper.Core\Dapper.Core.csproj", "{83E267EE-BEEF-493A-B1CC-3900221336A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.Core", "Dapper.Core\Dapper.Core.csproj", "{83E267EE-BEEF-493A-B1CC-3900221336A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Application", "Dapper.Application\Dapper.Application.csproj", "{620B49A2-072E-4A46-8229-EF75CA4F5352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.Application", "Dapper.Application\Dapper.Application.csproj", "{620B49A2-072E-4A46-8229-EF75CA4F5352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Infrastructure", "Dapper.Infrastructure\Dapper.Infrastructure.csproj", "{F44C78DA-F72D-41F6-B721-EA29F87C0A62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{620B49A2-072E-4A46-8229-EF75CA4F5352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{620B49A2-072E-4A46-8229-EF75CA4F5352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{620B49A2-072E-4A46-8229-EF75CA4F5352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F44C78DA-F72D-41F6-B721-EA29F87C0A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44C78DA-F72D-41F6-B721-EA29F87C0A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44C78DA-F72D-41F6-B721-EA29F87C0A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44C78DA-F72D-41F6-B721-EA29F87C0A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
