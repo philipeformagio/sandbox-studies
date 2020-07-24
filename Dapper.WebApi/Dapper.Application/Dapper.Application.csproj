@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\Dapper.Core\Dapper.Core.csproj" />
   </ItemGroup>
 
 </Project>
