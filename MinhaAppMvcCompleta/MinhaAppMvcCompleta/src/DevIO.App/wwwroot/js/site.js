@@ -22,6 +22,9 @@
 
         function bindForm(dialog) {
             $('form', dialog).submit(function () {
+
+                console.log(this.method);
+
                 $.ajax({
                     url: this.action,
                     type: this.method,

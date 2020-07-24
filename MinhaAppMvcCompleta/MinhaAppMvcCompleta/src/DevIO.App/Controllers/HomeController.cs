@@ -7,7 +7,11 @@ namespace DevIO.App.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            //throw new System.Exception();
+
+            return NotFound();
+
+            //return View();
         }
 
         public IActionResult Privacy()
