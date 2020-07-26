@@ -28,7 +28,8 @@ namespace LinqSamples
 
             var obj = products.Where(p => p.Name.StartsWith("A") || p.Name.EndsWith("o"))
                                //.Select(p => new { p.Name, p.Price })
-                               .Select(p => new SelectedProduct { Name = p.Name, Price = p.Price }) //same result as previous line but now it is typed
+                               //.Select(p => new SelectedProduct { Name = p.Name, Price = p.Price }) //same result as previous line but now it is typed
+                               .Select(p => new SelectedProduct { Name = p.Name.Substring(0, 3).Insert(3, "-PHILIPE"), Price = p.Price }) //just playing around
                                .ToList();
 
             obj.ForEach(item =>
