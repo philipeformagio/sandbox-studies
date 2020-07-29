@@ -24,19 +24,31 @@ namespace LinqSamples
             //    Console.WriteLine(x.Price);
             //});
 
-            var products = new Product().GetProductList();
+            //var products = new Product().GetProductList();
 
-            var obj = products.Where(p => p.Name.StartsWith("A") || p.Name.EndsWith("o"))
-                               //.Select(p => new { p.Name, p.Price })
-                               //.Select(p => new SelectedProduct { Name = p.Name, Price = p.Price }) //same result as previous line but now it is typed
-                               .Select(p => new SelectedProduct { Name = p.Name.Substring(0, 3).Insert(3, "-PHILIPE"), Price = p.Price }) //just playing around
-                               .ToList();
+            //var obj = products.Where(p => p.Name.StartsWith("A") || p.Name.EndsWith("o"))
+            //                   //.Select(p => new { p.Name, p.Price })
+            //                   //.Select(p => new SelectedProduct { Name = p.Name, Price = p.Price }) //same result as previous line but now it is typed
+            //                   .Select(p => new SelectedProduct { Name = p.Name.Substring(0, 3).Insert(3, "-PHILIPE"), Price = p.Price }) //just playing around
+            //                   .ToList();
+
+            //obj.ForEach(item =>
+            //{
+            //    Console.WriteLine(JsonConvert.SerializeObject(item));
+            //});
+
+            var produtos = new Product().GetProductList();
+
+            var obj = produtos
+                        //.Where(p => p.ValidUntil.Year == 2021)
+                        .Select(p => new SelectedProduct { Name = p.Name, Price = p.Price, ExpiredDay = p.ValidUntil.Day })
+                        .ToList();
 
             obj.ForEach(item =>
             {
                 Console.WriteLine(JsonConvert.SerializeObject(item));
-                Console.WriteLine(" ----------------------- ");
             });
+
 
             Console.ReadKey();
         }
@@ -46,5 +58,6 @@ namespace LinqSamples
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public int ExpiredDay { get; set; }
     }
 }

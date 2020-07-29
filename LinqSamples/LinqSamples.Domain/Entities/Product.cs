@@ -17,7 +17,7 @@ namespace LinqSamples.Domain.Entities
             _products.Add(new Product() { Id = Guid.NewGuid(), Name = "Morango", Quantity = 5, Price = 25, ValidUntil = DateTime.Now.AddDays(2) });
             _products.Add(new Product() { Id = Guid.NewGuid(), Name = "Acabaxi", Quantity = 4, Price = 1, ValidUntil = DateTime.Now.AddDays(4) });
             _products.Add(new Product() { Id = Guid.NewGuid(), Name = "Pera", Quantity = 12, Price = 12, ValidUntil = DateTime.Now.AddDays(3) });
-            _products.Add(new Product() { Id = Guid.NewGuid(), Name = "Melao", Quantity = 5, Price = 35, ValidUntil = DateTime.Now.AddDays(10) });
+            _products.Add(new Product() { Id = Guid.NewGuid(), Name = "Melao", Quantity = 5, Price = 35, ValidUntil = DateTime.Now.AddYears(1) });
 
             return _products;
         }
