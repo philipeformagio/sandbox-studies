@@ -119,14 +119,15 @@ namespace LinqSamples
             //});
 
             Console.WriteLine("----------------------------------");
-            var result = from p in allProducts
-                         group p by p.Category into grouped
-                         select new
+            var result = (from p in allProducts
+                         group p by p.Category into grouped                         
+                         select new ProductByCategoryReport
                          {
                              CategoryName = grouped.Key,
                              MinPrice = grouped.Min(x => x.Price),
-                             MaxPrice = grouped.Max(x => x.Price)
-                         };
+                             MaxPrice = grouped.Max(x => x.Price),
+                             TotalPrice = grouped.Sum(x => x.Price)
+                         }).OrderBy(x => x.CategoryName);
 
             foreach (var item in result)
             {
@@ -143,5 +144,13 @@ namespace LinqSamples
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int ExpiredDay { get; set; }
+    }
+
+    public class ProductByCategoryReport
+    {
+        public string CategoryName { get; set; }
+        public decimal MinPrice { get; set; }
+        public decimal MaxPrice { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }
