@@ -120,7 +120,7 @@ namespace LinqSamples
 
             Console.WriteLine("----------------------------------");
             var result = (from p in allProducts
-                         group p by p.Category into grouped                         
+                         group p by p.Category into grouped
                          select new ProductByCategoryReport
                          {
                              CategoryName = grouped.Key,
