@@ -104,36 +104,65 @@ namespace LinqSamples
             //var sum = products.Sum(p => p.Price); // total sum of all prices
 
 
-            var fruitsList = new Product().GetFruits();
-            var eletronicsList = new Product().GetEletronics();
-            var clothsList = new Product().GetCloths();
+            //var fruitsList = new Product().GetFruits();
+            //var eletronicsList = new Product().GetEletronics();
+            //var clothsList = new Product().GetCloths();
 
-            List<Product> allProducts = new List<Product>();
-            allProducts.AddRange(fruitsList);
-            allProducts.AddRange(eletronicsList);
-            allProducts.AddRange(clothsList);
+            //List<Product> allProducts = new List<Product>();
+            //allProducts.AddRange(fruitsList);
+            //allProducts.AddRange(eletronicsList);
+            //allProducts.AddRange(clothsList);
 
             //allProducts.ForEach(x =>
             //{
             //    Console.WriteLine(JsonConvert.SerializeObject(x));
             //});
 
-            Console.WriteLine("----------------------------------");
-            var result = (from p in allProducts
-                         group p by p.Category into grouped
-                         select new ProductByCategoryReport
-                         {
-                             CategoryName = grouped.Key,
-                             MinPrice = grouped.Min(x => x.Price),
-                             MaxPrice = grouped.Max(x => x.Price),
-                             TotalPrice = grouped.Sum(x => x.Price)
-                         }).OrderBy(x => x.CategoryName);
+            //Console.WriteLine("----------------------------------");
+            //var result = (from p in allProducts
+            //             group p by p.Category into grouped
+            //             select new ProductByCategoryReport
+            //             {
+            //                 CategoryName = grouped.Key,
+            //                 MinPrice = grouped.Min(x => x.Price),
+            //                 MaxPrice = grouped.Max(x => x.Price),
+            //                 TotalPrice = grouped.Sum(x => x.Price)
+            //             }).OrderBy(x => x.CategoryName);
 
-            foreach (var item in result)
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(JsonConvert.SerializeObject(item));
+            //}
+
+            //SkipWhile
+            //Skip while the condition is true
+            //var fruits = new Product().GetFruits();
+            //fruits = fruits.SkipWhile(x => x.Price > 10).ToList();
+
+            //fruits.ForEach(x =>
+            //{
+            //    Console.WriteLine(JsonConvert.SerializeObject(x.Name));
+            //});
+
+            //Union
+            //int[] vet1 = { 5, 3, 9, 7, 5, 9, 3, 7 };
+            //int[] vet2 = { 8, 3, 6, 4, 4, 9, 1, 0 };
+
+            //IEnumerable<int> union = vet1.Union(vet2);
+
+            //union.ToList().ForEach(x =>
+            //{
+            //    Console.WriteLine(x);
+            //});
+
+            //Distinct
+            int[] vet = { 5, 3, 9, 7, 5, 9, 3, 7 };
+            var rest = vet.Distinct();
+
+            rest.ToList().ForEach(num =>
             {
-                Console.WriteLine(JsonConvert.SerializeObject(item));
-            }
-
+                Console.WriteLine(num);
+            });
 
             Console.ReadKey();
         }
