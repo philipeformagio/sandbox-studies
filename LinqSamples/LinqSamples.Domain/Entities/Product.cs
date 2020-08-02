@@ -25,6 +25,7 @@ namespace LinqSamples.Domain.Entities
         public List<Product> GetEletronics()
         {
             _products.Add(new Product() { Name = "IPhone", Price = 8000, Category = "Eletronicos" });
+            _products.Add(new Product() { Name = "IPhone", Price = 10000, Category = "Eletronicos" });
             _products.Add(new Product() { Name = "Galaxy S7 Edge", Price = 2000, Category = "Eletronicos" });
             _products.Add(new Product() { Name = "Pen Drive", Price = 100, Category = "Eletronicos" });
 

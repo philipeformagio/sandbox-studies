@@ -156,13 +156,25 @@ namespace LinqSamples
             //});
 
             //Distinct
-            int[] vet = { 5, 3, 9, 7, 5, 9, 3, 7 };
-            var rest = vet.Distinct();
+            //int[] vet = { 5, 3, 9, 7, 5, 9, 3, 7 };
+            //var rest = vet.Distinct();
 
-            rest.ToList().ForEach(num =>
-            {
-                Console.WriteLine(num);
-            });
+            //rest.ToList().ForEach(num =>
+            //{
+            //    Console.WriteLine(num);
+            //});
+
+            //var iphones = new Product().GetEletronics().Where(x => x.Name.Contains("IPhone")).Select(x => x.Name).Distinct();
+
+            //iphones.ToList().ForEach(x =>
+            //{
+            //    Console.WriteLine(x);
+            //});
+
+            //Any
+            var exist = new Product().GetCloths().Any();
+            var existBook = new Product().GetCloths().Any(x => x.Name == "Livro");
+
 
             Console.ReadKey();
         }
