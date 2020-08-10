@@ -8,9 +8,10 @@ using Microsoft.Extensions.Logging;
 namespace MyFirstAPI.Controllers
 {
     [ApiController]
-    // [Route("[controller]")]
+    [Route("[controller]")]
     public class ValuesController : ControllerBase
     {
+        // Get api/values/obter-por-id/5
         [HttpGet("obter-por-id/{id:int}")]
         public ActionResult<string> Get(int id)
         {
