@@ -9,7 +9,7 @@ namespace MyFirstAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ValuesController : ControllerBase
+    public class ValuesController : MainController
     {
         // Get api/values/obter-por-id/5
         [HttpGet("obter-por-id/{id:int}")]
@@ -38,9 +38,9 @@ namespace MyFirstAPI.Controllers
             var values = new string[] { "value1", "value2" };
 
             if(values.Length < 5000)
-                return BadRequest();
+                return CustomResponse();
 
-            return Ok(values);
+            return CustomResponse(values);
         }
 
         // When typed can only return typed
@@ -77,6 +77,39 @@ namespace MyFirstAPI.Controllers
         public void Delete([FromQuery]int id) // [FromQuery] when you want to pull a parameter from the query string
         {
         }
+    }
+
+    [ApiController]
+    public abstract class MainController : ControllerBase
+    {
+        protected ActionResult CustomResponse(object result = null)
+        {
+            if(ValidOperations())
+            {
+                return Ok(new 
+                {
+                    success = true,
+                    data = result
+                });
+            }
+
+            return BadRequest(new
+            {
+                success = true,
+                errors = ObterErrors()
+            });
+        }
+
+        public bool ValidOperations() 
+        {
+            // do validations
+            return true;
+        }
+
+        protected string ObterErrors()
+        {
+            return "";
+        } 
     }
 
     public class Product
