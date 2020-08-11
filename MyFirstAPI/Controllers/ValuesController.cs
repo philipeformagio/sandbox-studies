@@ -67,6 +67,16 @@ namespace MyFirstAPI.Controllers
             // return Ok(product);
             return CreatedAtAction(nameof(Post), product);
         }
+
+        [HttpPut("{id}")]
+        public void Put(int id, [FromForm]Product product) // [FromFrom] is data sent by the client using FormData
+        {
+        }
+
+        [HttpDelete]
+        public void Delete([FromQuery]int id) // [FromQuery] when you want to pull a parameter from the query string
+        {
+        }
     }
 
     public class Product
