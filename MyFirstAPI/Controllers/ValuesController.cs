@@ -17,6 +17,62 @@ namespace MyFirstAPI.Controllers
         {
             return "value";
         }
+
+        // When have a typed ActionResult you can either return an actions/results(BadRequest())
+        // or its type
+        [HttpGet]
+        public ActionResult <IEnumerable<string>> GetAll()
+        {
+            var values = new string[] { "value1", "value2" };
+
+            if(values.Length < 5000)
+                return BadRequest();
+
+            return values;
+        }
+
+        // When only ActionResult can only return actions/results
+        [HttpGet]
+        public ActionResult GetResult()
+        {
+            var values = new string[] { "value1", "value2" };
+
+            if(values.Length < 5000)
+                return BadRequest();
+
+            return Ok(values);
+        }
+
+        // When typed can only return typed
+        [HttpGet]
+        public IEnumerable<string> GetValues()
+        {
+            var values = new string[] { "value1", "value2" };
+
+            if(values.Length < 5000)
+                return null;
+
+            return values;
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(Product), 201)] // use this for documentation purpose
+        [ProducesResponseType(404)] // use this for documentation purpose
+        public ActionResult Post(Product product)
+        {
+            if(product.Id == 0) return BadRequest();
+             
+            // add database
+
+            // return Ok(product);
+            return CreatedAtAction(nameof(Post), product);
+        }
+    }
+
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
     
 }
