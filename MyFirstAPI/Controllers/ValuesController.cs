@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace MyFirstAPI.Controllers
 {
@@ -56,16 +53,16 @@ namespace MyFirstAPI.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Product), 201)] // use this for documentation purpose
+        [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)] // use this for documentation purpose
         [ProducesResponseType(404)] // use this for documentation purpose
         public ActionResult Post(Product product)
         {
             if(product.Id == 0) return BadRequest();
-             
+
             // add database
 
-            // return Ok(product);
-            return CreatedAtAction(nameof(Post), product);
+            return Ok(product);
+            //return CreatedAtAction(nameof(Post), product);
         }
 
         [HttpPut("{id}")]
