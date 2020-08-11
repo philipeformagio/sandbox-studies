@@ -53,21 +53,33 @@ namespace MyFirstAPI.Controllers
         }
 
         [HttpPost]
+        /* use this or the convetion above instead
         [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)] // use this for documentation purpose
         [ProducesResponseType(404)] // use this for documentation purpose
+        */
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         public ActionResult Post(Product product)
         {
             if(product.Id == 0) return BadRequest();
 
             // add database
 
-            return Ok(product);
-            //return CreatedAtAction(nameof(Post), product);
+            //return Ok(product);
+            return CreatedAtAction(nameof(Post), product);
         }
 
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
         [HttpPut("{id}")]
-        public void Put(int id, [FromForm]Product product) // [FromFrom] is data sent by the client using FormData
+        public ActionResult Put(int id, [FromForm]Product product) // [FromFrom] is data sent by the client using FormData
         {
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (id != product.Id) return NotFound();
+
+            // add database
+
+            //return Ok(product);
+            return NoContent();
         }
 
         [HttpDelete]
