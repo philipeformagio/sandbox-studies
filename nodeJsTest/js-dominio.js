@@ -1,0 +1,1 @@
+console.log('loading js via external file same domain');

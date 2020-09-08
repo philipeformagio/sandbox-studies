@@ -1,4 +1,5 @@
-let a = 1;
-let b = 2;
+let arr = ['carro', 'bicicleta', 'moto', 'barco'];
 
-console.log(a + b);
+arr.forEach(element => {
+    console.log(element);
+});
