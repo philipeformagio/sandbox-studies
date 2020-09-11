@@ -1,3 +1,7 @@
+// document.getElementById("user-input").addEventListener("submit", function(event){
+//     event.preventDefault();
+// });
+
 var Validator = {
     REQUIRED: 'REQUIRED',
     MIN_LENGTH: 'MIN_LENGTH',
@@ -26,8 +30,9 @@ var UserInputForm = {
     userNameInput: document.getElementById('username'),
     userPasswordInput: document.getElementById('password'),
 
-    userInputFormSubmit: function() {
+    userInputFormSubmit: function(event) {
         event.preventDefault();
+        console.log('oi');
 
         var enteredUsername = this.userNameInput.value;
         var enteredPassword = this.userPasswordInput.value;
@@ -46,3 +51,6 @@ var UserInputForm = {
         User.greet();
     }
 }
+
+document.getElementById("user-input")
+        .addEventListener("submit", UserInputForm.userInputFormSubmit(event));
