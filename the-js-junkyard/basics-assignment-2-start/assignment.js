@@ -12,11 +12,12 @@ function concatenatingString(param1, param2, param3) {
     return `${param1}, ${param2}, ${param3}`
 }
 
-greeting();
+//greeting();
 
 greetingName('Zlatan');
 
 task3Element.addEventListener('click', greeting);
 
-const result = concatenatingString('Zlatan', 'Philipe', 'Laylay');
-alert(result);
+// const result = concatenatingString('Zlatan', 'Philipe', 'Laylay');
+// alert(result);
+alert(concatenatingString('Zlatan', 'Philipe', 'Laylay'));
