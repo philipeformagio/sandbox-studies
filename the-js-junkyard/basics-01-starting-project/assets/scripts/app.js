@@ -17,13 +17,22 @@ function writeToLog(operationName, prevResult, operationNumber, newResult) {
     operation: operationName,
     previousResult: prevResult,
     number: operationNumber,
-    result: newResult
+    result: newResult,
   };
   logEntries.push(logEntry);
   console.log(logEntry);
 }
 
 function calculateResult(calculationType) {
+  if (
+    calculationType !== 'ADD' &&
+    calculationType !== 'SUBTRACT' &&
+    calculationType !== 'MULTIPLY' &&
+    calculationType !== 'DIVIDE'
+  ) {
+    return;
+  }
+
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
   let mathOperator;
