@@ -9,15 +9,7 @@ let currentPlayerHealth = chosenMaxLife;
 
 adjustHealthBars(chosenMaxLife);
 
-function attackMonster(attackMode) {
-    // let maxDamage;
-    // if(attackMode === 'ATTACK') {
-    //     maxDamage = ATTACK_VALUE;
-    // } else if(attackMode === 'STRONG_ATTACK') {
-    //     maxDamage = STRONG_ATTACK_VALUE;
-    // }
-    const monsterDamageTaken = dealMonsterDamage(attackMode);
-    currentMonsterHealth -= monsterDamageTaken;
+function endRound() {
     const playerDamageTaken = dealPlayerDamage(MONSTER_ATTACK_VALUE);
     currentPlayerHealth -= playerDamageTaken;
     if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
@@ -27,6 +19,18 @@ function attackMonster(attackMode) {
     } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
         alert('draw!');
     }
+}
+
+function attackMonster(attackMode) {
+    // let maxDamage;
+    // if(attackMode === 'ATTACK') {
+    //     maxDamage = ATTACK_VALUE;
+    // } else if(attackMode === 'STRONG_ATTACK') {
+    //     maxDamage = STRONG_ATTACK_VALUE;
+    // }
+    const monsterDamageTaken = dealMonsterDamage(attackMode);
+    currentMonsterHealth -= monsterDamageTaken;
+    endRound();
 }
 
 function attackHandler() {
@@ -39,6 +43,8 @@ function strongAttackHandler() {
 
 function healPlayerHandler() {
     increasePlayerHealth(HEAL_VALUE);
+    currentPlayerHealth += HEAL_VALUE;
+    endRound();
 }
 
 attackBtn.addEventListener('click', attackHandler);
