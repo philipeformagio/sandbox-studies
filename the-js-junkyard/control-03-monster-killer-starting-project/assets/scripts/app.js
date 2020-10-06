@@ -22,12 +22,6 @@ function endRound() {
 }
 
 function attackMonster(attackMode) {
-    // let maxDamage;
-    // if(attackMode === 'ATTACK') {
-    //     maxDamage = ATTACK_VALUE;
-    // } else if(attackMode === 'STRONG_ATTACK') {
-    //     maxDamage = STRONG_ATTACK_VALUE;
-    // }
     const monsterDamageTaken = dealMonsterDamage(attackMode);
     currentMonsterHealth -= monsterDamageTaken;
     endRound();
