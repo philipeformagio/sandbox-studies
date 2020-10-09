@@ -133,12 +133,10 @@ function endRound() {
 }
 
 function attackMonster(attackMode) {
-    let logEvent;
-    if (attackMode === 10) {
-        logEvent = LOG_EVENT_PLAYER_ATTACK;
-    } else {
-        logEvent = LOG_EVENT_PLAYER_STRONG_ATTACK;
-    }
+    const logEvent = 
+        attackMode === 10
+         ? LOG_EVENT_PLAYER_ATTACK
+         : LOG_EVENT_PLAYER_STRONG_ATTACK;
 
     const monsterDamageTaken = dealMonsterDamage(attackMode);
     currentMonsterHealth -= monsterDamageTaken;
