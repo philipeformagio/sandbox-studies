@@ -25,11 +25,16 @@ while (counter < arrayNumbers.length) {
 
 console.log('<--- normal for loop backwards--->');
 for (let index = arrayNumbers.length - 1; index >= 0; index--) {
+    console.log('Index', index);
     console.log(arrayNumbers[index]);
 }
 
 const anotherRandomNumber = Math.random();
 
-if (randomNumber && anotherRandomNumber > 0.7 || !(randomNumber && anotherRandomNumber < 0.2)) {
-    alert(`yeah`);
+if (
+    (randomNumber > 0.7 && anotherRandomNumber > 0.7) || 
+    randomNumber <= 0.2 || 
+    anotherRandomNumber <= 0.2
+    ) {
+    alert('Greater than 0.7 or smaller than 0.2');
 }
