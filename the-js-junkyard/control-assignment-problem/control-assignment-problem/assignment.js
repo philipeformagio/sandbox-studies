@@ -17,19 +17,19 @@ for (const number of arrayNumbers) {
 }
 
 console.log('<--- while loop --->')
-let i = 0;
-while (i < arrayNumbers.length) {
-    console.log(arrayNumbers[i]);
-    i++;
+let counter = 0;
+while (counter < arrayNumbers.length) {
+    console.log(arrayNumbers[counter]);
+    counter++;
 }
 
 console.log('<--- normal for loop backwards--->');
-for (let index = arrayNumbers.length; index > 0; index--) {
+for (let index = arrayNumbers.length - 1; index >= 0; index--) {
     console.log(arrayNumbers[index]);
 }
 
 const anotherRandomNumber = Math.random();
 
-if (randomNumber && anotherRandomNumber > 0.7 || randomNumber && anotherRandomNumber < 0.2) {
+if (randomNumber && anotherRandomNumber > 0.7 || !(randomNumber && anotherRandomNumber < 0.2)) {
     alert(`yeah`);
 }
