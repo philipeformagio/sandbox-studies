@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Logging Test</title>
+</head>
+ 
+<body>
+  <button id="button">Log!</button>
+  <script>
+ 
+    const array = ['a', 'b', 'c'];
+  
+    let logIndex = 0; 
+  
+    function log() {
+      if (logIndex < array.length) {
+          console.log(array[logIndex++]);
+      }
+    };
+ 
+    button.onclick = log;
+  
+  </script>
+</body>
