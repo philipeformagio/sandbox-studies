@@ -11,7 +11,7 @@ const getRandomChoice = function() {
     const choices = ['ROCK', 'PAPER', 'SCISSORS'];
     const random = Math.floor(Math.random() * choices.length);
     return choices[random];
-}
+};
 
 const getPlayerChoice = function() {
     const selection = prompt(`${ROCK}, ${PAPER} or ${SCISSORS}?`, '').toUpperCase();
