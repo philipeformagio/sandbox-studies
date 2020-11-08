@@ -29,7 +29,9 @@ namespace EP.SOLID.SRP.Violacao
                 cn.ConnectionString = "MinhaConnectionString";
                 cmd.Connection = cn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO CLIENTE (NOME, EMAIL CPF, DATACADASTRO) VALUES (@nome, @email, @cpf, @dataCad))";
+                cmd.CommandText = 
+                    "INSERT INTO CLIENTE (NOME, EMAIL CPF, DATACADASTRO)" +
+                    " VALUES (@nome, @email, @cpf, @dataCad))";
 
                 cmd.Parameters.AddWithValue("nome", Nome);
                 cmd.Parameters.AddWithValue("email", Email);
