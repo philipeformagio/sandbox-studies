@@ -23,7 +23,30 @@ namespace ACM.BL.Test
             Assert.AreEqual(expected.ProductName, actual.ProductName);
             Assert.AreEqual(expected.ProductDescription, actual.ProductDescription);
             Assert.AreEqual(expected.CurrentPrice, actual.CurrentPrice);
+        }
 
+        [Test]
+        public void SaveTest()
+        {
+            //-- Arrange
+            var productRepository = new ProductRepository();
+            var expected = new Product(1)
+            {
+                ProductName = "Sunflowers",
+                ProductDescription = "Assorted Siz",
+                CurrentPrice = 15.96M,
+                IsNew = true,
+                HasChanges = true
+
+            };
+
+            //-- Act
+            var actual = productRepository.Save(expected);
+
+            //-- Assert
+            //Assert.AreEqual(expected.ProductName, actual.ProductName);
+            //Assert.AreEqual(expected.ProductDescription, actual.ProductDescription);
+            //Assert.AreEqual(expected.CurrentPrice, actual.CurrentPrice);
         }
     }
 }

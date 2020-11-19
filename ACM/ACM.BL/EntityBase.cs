@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ACM.BL
+﻿namespace ACM.BL
 {
     public enum EntityStateOption
     {
@@ -12,10 +8,16 @@ namespace ACM.BL
 
     public abstract class EntityBase
     {
-        public bool IsNew { get; private set; }
+        public bool IsNew { get; set; }
         public bool HasChanges { get; set; }
         public EntityStateOption EntityState { get; set; }
-        public bool IsValid { get { return Validate(); } }
+        public bool IsValid 
+        { 
+            get 
+            { 
+                return Validate(); 
+            } 
+        }
 
         public abstract bool Validate();
     }
