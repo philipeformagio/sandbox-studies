@@ -2,12 +2,9 @@ using DevIO.Api.Configuration;
 using DevIO.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using DevIO.Api.Configuration;
 
 namespace DevIO.Api
 {
@@ -28,6 +25,8 @@ namespace DevIO.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddIdentityConfiguration(Configuration);
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddApiConfig();
@@ -38,6 +37,8 @@ namespace DevIO.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             app.UseApiConfig(env);
         }
     }
