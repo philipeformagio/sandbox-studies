@@ -20,10 +20,11 @@ namespace DevIO.Api.Controllers
         private readonly IEnderecoRepository _enderecoRepository;
         private readonly IFornecedorRepository _fornecedorRepository;
         public FornecedoresController(IMapper mapper, 
+                                      IUser user,
                                       INotificador notificador,
                                       IFornecedorService fornecedorService,
                                       IEnderecoRepository enderecoRepository,
-                                      IFornecedorRepository fornecedorRepository) : base(notificador)
+                                      IFornecedorRepository fornecedorRepository) : base(user, notificador)
         {
             _mapper = mapper;
             _fornecedorService = fornecedorService;
@@ -57,6 +58,15 @@ namespace DevIO.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<FornecedorViewModel>> Adicionar(FornecedorViewModel fornecedorViewModel)
         {
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    var userName = User.Identity.Name;
+            //}
+            if (UsuarioAutenticado)
+            {
+                var userName = AppUser.Name;
+            }
+
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);

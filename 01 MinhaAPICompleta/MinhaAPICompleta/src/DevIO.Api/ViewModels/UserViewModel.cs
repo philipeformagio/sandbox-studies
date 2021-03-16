@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DevIO.Api.ViewModels
@@ -38,7 +37,7 @@ namespace DevIO.Api.ViewModels
 
     public class LoginResponseViewModel
     {
-        public string AcessToken { get; set; }
+        public string AccessToken { get; set; }
         public double ExpiresIn { get; set; }
         public UserData User { get; set; }
     }

@@ -21,9 +21,10 @@ namespace DevIO.Api.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
         public AuthController(INotificador notificador,
+                              IUser appUser,
                               SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings) : base(notificador)
+                              IOptions<AppSettings> appSettings) : base(appUser, notificador)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -112,7 +113,7 @@ namespace DevIO.Api.Controllers
 
             var responde = new LoginResponseViewModel
             {
-                AcessToken = encodedToken,
+                AccessToken = encodedToken,
                 ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoHoras).TotalMilliseconds,
                 User = new UserData
                 {
