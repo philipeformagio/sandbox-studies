@@ -6,6 +6,7 @@ using DevIO.Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -41,8 +42,35 @@ namespace DevIO.Api.Controllers
 
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<FornecedorViewModel>> ObterPorId(Guid id)
+        {            
+            var fornecedor = (await _fornecedorRepository.Buscar(f => f.Id == id)).FirstOrDefault();
+            var fornecedorViewModel = _mapper.Map<FornecedorViewModel>(fornecedor);
+            if (fornecedorViewModel == null) return NotFound();
+            return fornecedorViewModel;
+        }
+
+        [HttpGet("{id:guid}/endereco")]
+        public async Task<ActionResult<FornecedorViewModel>> ObterPorIdComEndereco(Guid id)
         {
-            var fornecedorViewModel = await this.ObterFornecedorProdutosEndereco(id);
+            var fornecedor = await _fornecedorRepository.ObterFornecedorEndereco(id);
+            var fornecedorViewModel = _mapper.Map<FornecedorViewModel>(fornecedor);
+            if (fornecedorViewModel == null) return NotFound();
+            return fornecedorViewModel;
+        }
+
+        [HttpGet("{id:guid}/endereco/produtos")]
+        public async Task<ActionResult<FornecedorViewModel>> ObterPorIdComEnderecoComProdutos(Guid id)
+        {
+            var fornecedorViewModel = await ObterFornecedorProdutosEndereco(id);
+            if (fornecedorViewModel == null) return NotFound();
+            return fornecedorViewModel;
+        }
+
+        [HttpGet("{id:guid}/produtos")]
+        public async Task<ActionResult<FornecedorViewModel>> ObterPorIdComProdutos(Guid id)
+        {
+            var fornecedor = await _fornecedorRepository.ObterFornecedorIdProdutos(id);
+            var fornecedorViewModel = _mapper.Map<FornecedorViewModel>(fornecedor);
             if (fornecedorViewModel == null) return NotFound();
             return fornecedorViewModel;
         }
@@ -133,6 +161,7 @@ namespace DevIO.Api.Controllers
 
             return CustomResponse(enderecoViewModel);
         }
+
 
         #region .: Private Methods :.
         private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)

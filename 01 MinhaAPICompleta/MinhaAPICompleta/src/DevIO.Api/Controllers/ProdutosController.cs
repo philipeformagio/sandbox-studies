@@ -77,6 +77,14 @@ namespace DevIO.Api.Controllers
             return CustomResponse(produtoViewModel);
         }
 
+        [RequestSizeLimit(400000000)]
+        [ClaimsAuthorize("Produto", "Adicionar")]
+        [HttpPost("adicionar-imagem")]
+        public ActionResult AdicionarImagem(IFormFile file)
+        {
+            return Ok(file);
+        }
+
         [ClaimsAuthorize("Produto", "Atualizar")]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<ProdutoViewModel>> Atualizar(Guid id, ProdutoViewModel produtoViewModel)
@@ -152,16 +160,19 @@ namespace DevIO.Api.Controllers
                 NotificarErro("Forneça uma imagem para esse produto!");
                 return false;
             }
+
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/app/demo-webapi/src/assets", imgPrefixo + arquivo.FileName);
             if (System.IO.File.Exists(path))
             {
                 NotificarErro("Já existe um arquivo com esse nome");
                 return false;
             }
+
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await arquivo.CopyToAsync(stream);
             }
+
             return true;
         }
         #endregion
