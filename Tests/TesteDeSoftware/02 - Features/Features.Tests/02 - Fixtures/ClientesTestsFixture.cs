@@ -40,7 +40,7 @@ namespace Features.Tests
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
